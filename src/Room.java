@@ -1,17 +1,20 @@
+import java.util.ArrayList;
+import java.util.List;
 
 public class Room {
     String roomName;
-    Room exit;
+    List<Room> exit;
 
     public Room(String name) {
         roomName = name;
+        exit = new ArrayList<>();
     }
 
-    public void AddExit(Room secondRoom) {
-        exit = secondRoom;
+    public void AddExit(Room room) {
+        exit.add(room);
     }
 
-    public Room getExits() {
+    public List<Room> getExits() {
         return exit;
     }
 }

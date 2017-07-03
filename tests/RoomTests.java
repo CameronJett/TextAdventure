@@ -1,5 +1,8 @@
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static junit.framework.TestCase.assertEquals;
 
 public class RoomTests {
@@ -9,6 +12,20 @@ public class RoomTests {
     public void WhenYouAddAnExitRoomItIsAddedToPossibleMoveLocations() {
         Room secondRoom = new Room("second room");
         testRoom.AddExit(secondRoom);
-        assertEquals(secondRoom, testRoom.getExits());
+        List<Room> rooms = new ArrayList<>();
+        rooms.add(secondRoom);
+        assertEquals(rooms, testRoom.getExits());
+    }
+
+    @Test
+    public void WhenYouAddTwoExitsTheyAreBothAvailableToMoveTo() {
+        Room secondRoom = new Room("second room");
+        Room thirdRoom = new Room("third room");
+        testRoom.AddExit(secondRoom);
+        testRoom.AddExit(thirdRoom);
+        List<Room> rooms = new ArrayList<>();
+        rooms.add(secondRoom);
+        rooms.add(thirdRoom);
+        assertEquals(rooms, testRoom.getExits());
     }
 }

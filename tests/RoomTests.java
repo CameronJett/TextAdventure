@@ -14,7 +14,7 @@ public class RoomTests {
         testRoom.AddExit(secondRoom);
         List<Room> rooms = new ArrayList<>();
         rooms.add(secondRoom);
-        assertEquals(rooms, testRoom.getExits());
+        assertEquals(rooms, testRoom.GetExits());
     }
 
     @Test
@@ -26,6 +26,15 @@ public class RoomTests {
         List<Room> rooms = new ArrayList<>();
         rooms.add(secondRoom);
         rooms.add(thirdRoom);
-        assertEquals(rooms, testRoom.getExits());
+        assertEquals(rooms, testRoom.GetExits());
+    }
+
+    @Test
+    public void WhenYouRemoveAnExitItIsNoLongerAvailable() {
+        Room secondRoom = new Room("second room");
+        testRoom.AddExit(secondRoom);
+        testRoom.RemoveExit(secondRoom);
+        List<Room> rooms = new ArrayList<>();
+        assertEquals(rooms, testRoom.GetExits());
     }
 }

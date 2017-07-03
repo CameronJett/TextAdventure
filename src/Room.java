@@ -2,19 +2,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Room {
-    String roomName;
-    List<Room> exit;
+    private String roomName;
+    private List<Room> exits;
 
     public Room(String name) {
         roomName = name;
-        exit = new ArrayList<>();
+        exits = new ArrayList<>();
     }
 
     public void AddExit(Room room) {
-        exit.add(room);
+        exits.add(room);
     }
 
-    public List<Room> getExits() {
-        return exit;
+    public List<Room> GetExits() {
+        return exits;
+    }
+
+    public void RemoveExit(Room room) {
+        if(exits.contains(room)) {
+            exits.remove(room);
+        }
     }
 }

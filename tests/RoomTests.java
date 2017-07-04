@@ -40,6 +40,15 @@ public class RoomTests {
     public void WhenYouLookAtARoomYouGetItsDescription() {
         LookCommand look = new LookCommand();
         look.Put(testRoom, "test description");
-        assertEquals("test description", look.GetResponse());
+        assertEquals("test description", look.GetResponse(testRoom));
+    }
+
+    @Test
+    public void WhenYouAddMultipleRoomsYouCanGetAllDescriptions() {
+        LookCommand look = new LookCommand();
+        look.Put(testRoom, "test description");
+        look.Put(secondRoom, "second description");
+        assertEquals("test description", look.GetResponse(testRoom));
+        assertEquals("second description", look.GetResponse(secondRoom));
     }
 }

@@ -31,10 +31,10 @@ public class TextAdventureTests {
 
     @Test
     public void WhenYouRemoveAnExitItIsNoLongerAvailable() {
-        testRoom.addExit(secondRoom);
-        testRoom.removeExit(secondRoom);
+        secondRoom.addExit(testRoom);
+        secondRoom.removeExit(testRoom);
         List<Room> rooms = new ArrayList<>();
-        assertEquals(rooms, testRoom.getExits());
+        assertEquals(rooms, secondRoom.getExits());
     }
 
     @Test
@@ -58,5 +58,13 @@ public class TextAdventureTests {
     public void WhenYouLookAtSomethingInterestingInTheRoomYouGetADescription() {
         testRoom.addPointOfInterest("object", "objects description");
         assertEquals("objects description", look.getResponse(testRoom, "object"));
+    }
+
+    @Test
+    public void WhenYouTalkToSomeoneYouGetTheirDialogOptions() {
+        TalkCommand talk = new TalkCommand();
+        Person testPerson = new Person("test name", "test person desription");
+        testPerson.addDialog("dialog option", "dialog text");
+        assertEquals("1. dialog option\n", talk.getResponse(testPerson, "test name"));
     }
 }

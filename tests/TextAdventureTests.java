@@ -5,10 +5,10 @@ import java.util.List;
 
 import static junit.framework.TestCase.assertEquals;
 
-public class RoomTests {
-    Room testRoom = new Room("test room name");
-    Room secondRoom = new Room("second room");
-    Room thirdRoom = new Room("third room");
+public class TextAdventureTests {
+    private Room testRoom = new Room("test room name");
+    private Room secondRoom = new Room("second room");
+    private Room thirdRoom = new Room("third room");
 
     @Test
     public void WhenYouAddAnExitRoomItIsAddedToPossibleMoveLocations() {
@@ -50,5 +50,13 @@ public class RoomTests {
         look.Put(secondRoom, "second description");
         assertEquals("test description", look.GetResponse(testRoom));
         assertEquals("second description", look.GetResponse(secondRoom));
+    }
+
+    @Test
+    public void WhenYouLookAtACharacterYouGetTheirDescription() {
+        Person testPerson = new Person("test name");
+        LookCommand look = new LookCommand();
+        look.Put(testPerson, "test person description");
+        assertEquals("test person description", look.GetResponse(testPerson));
     }
 }

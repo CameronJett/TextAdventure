@@ -1,12 +1,11 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Room {
-    private String roomName;
+public class Room extends Interactable{
     private List<Room> exits;
 
     public Room(String name) {
-        roomName = name;
+        super(name);
         exits = new ArrayList<>();
     }
 

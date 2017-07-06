@@ -39,18 +39,24 @@ public class TextAdventureTests {
 
     @Test
     public void WhenYouLookAtARoomYouGetItsDescription() {
-        assertEquals("test description", look.GetResponse(testRoom));
+        assertEquals("test description", look.getResponse(testRoom, testRoom.getName()));
     }
 
     @Test
     public void WhenYouAddMultipleRoomsYouCanGetAllDescriptions() {
-        assertEquals("test description", look.GetResponse(testRoom));
-        assertEquals("second description", look.GetResponse(secondRoom));
+        assertEquals("test description", look.getResponse(testRoom, testRoom.getName()));
+        assertEquals("second description", look.getResponse(secondRoom, secondRoom.getName()));
     }
 
     @Test
     public void WhenYouLookAtACharacterYouGetTheirDescription() {
         Person testPerson = new Person("test name", "test person description");
-        assertEquals("test person description", look.GetResponse(testPerson));
+        assertEquals("test person description", look.getResponse(testPerson, testPerson.getName()));
+    }
+
+    @Test
+    public void WhenYouLookAtSomethingInterestingInTheRoomYouGetADescription() {
+        testRoom.addPointOfInterest("object", "objects description");
+        assertEquals("objects description", look.getResponse(testRoom, "object"));
     }
 }

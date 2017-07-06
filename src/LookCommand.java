@@ -2,17 +2,17 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LookCommand {
-     private Map<Interactable, String> rooms = new HashMap<>();
+     private Map<Interactable, String> entities = new HashMap<>();
 
     public String GetResponse(Interactable entity) {
-        if(rooms.containsKey(entity))
+        if(entities.containsKey(entity))
         {
-            return rooms.get(entity);
+            return entities.get(entity);
         }
         return "That's not very interesting.";
     }
 
     public void Put(Interactable entity, String description) {
-        rooms.put(entity, description);
+        entities.put(entity, description);
     }
 }

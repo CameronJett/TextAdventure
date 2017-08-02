@@ -7,9 +7,11 @@ import static junit.framework.TestCase.assertEquals;
 
 public class TextAdventureTests {
     private Room testRoom = new Room("test room name", "test description");
+    private Room currentRoom = testRoom;
     private Room secondRoom = new Room("second room", "second description");
     private Room thirdRoom = new Room("third room", "third description");
     private LookCommand look = new LookCommand();
+    private MoveCommand move = new MoveCommand();
 
     @Test
     public void WhenYouAddAnExitRoomItIsAddedToPossibleMoveLocations() {
@@ -81,11 +83,17 @@ public class TextAdventureTests {
 
     @Test
     public void WhenYouMoveToAPossibleExitItBecomesTheCurrentRoom() {
-        Room currentRoom = testRoom;
         testRoom.addExit(secondRoom);
-        MoveCommand move = new MoveCommand();
-        move.getResponse(currentRoom, "second room");
+        assertEquals("You moved to second room.", move.getResponse(currentRoom, "second room"));
         currentRoom = move.moveToNewRoom(currentRoom, "second room");
         assertEquals(currentRoom.getName(), "second room");
+    }
+
+    @Test
+    public void WhenYouMoveToARoomThatDoesNotExistYouDoNotMove() {
+        testRoom.addExit(thirdRoom);
+        assertEquals("You can't move there.", move.getResponse(currentRoom, "second room"));
+        currentRoom = move.moveToNewRoom(currentRoom, "second room");
+        assertEquals(currentRoom.getName(), "test room name");
     }
 }

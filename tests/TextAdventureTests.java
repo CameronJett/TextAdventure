@@ -76,6 +76,16 @@ public class TextAdventureTests {
         rooms.add(secondRoom);
         rooms.add(thirdRoom);
         MoveCommand move = new MoveCommand();
-        assertEquals("1. second room\n2. third room\n", move.getResponse(testRoom));
+        assertEquals("1. second room\n2. third room\n", move.getResponse(testRoom, "move"));
+    }
+
+    @Test
+    public void WhenYouMoveToAPossibleExitItBecomesTheCurrentRoom() {
+        Room currentRoom = testRoom;
+        testRoom.addExit(secondRoom);
+        MoveCommand move = new MoveCommand();
+        move.getResponse(currentRoom, "second room");
+        currentRoom = move.moveToNewRoom(currentRoom, "second room");
+        assertEquals(currentRoom.getName(), "second room");
     }
 }

@@ -13,6 +13,25 @@ public class Room extends Interactable{
         exits.add(room);
     }
 
+    public boolean hasExit(String option) {
+        for (Room room : exits) {
+            if (room.getName().equals(option)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public Room getExit(String option) {
+        Room exit = this;
+        for (Room room : exits) {
+            if (room.getName().equals(option)) {
+                exit = room;
+            }
+        }
+        return exit;
+    }
+
     public List<Room> getExits() {
         return exits;
     }

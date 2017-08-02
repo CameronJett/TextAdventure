@@ -22,4 +22,13 @@ public class Room extends Interactable{
             exits.remove(room);
         }
     }
+
+    public String getExitChoices() {
+        String dialogChoices = "";
+
+        for (int i=1; i <= exits.size(); i++) {
+            dialogChoices = dialogChoices + i + ". " + exits.get(i-1).getName() + "\n";
+        }
+        return dialogChoices;
+    }
 }

@@ -67,4 +67,15 @@ public class TextAdventureTests {
         testPerson.addDialog("dialog option", "dialog text");
         assertEquals("1. dialog option\n", talk.getResponse(testPerson, "test name"));
     }
+
+    @Test
+    public void WhenYouOnlyTypeMoveYouGetAllExits() {
+        testRoom.addExit(secondRoom);
+        testRoom.addExit(thirdRoom);
+        List<Room> rooms = new ArrayList<>();
+        rooms.add(secondRoom);
+        rooms.add(thirdRoom);
+        MoveCommand move = new MoveCommand();
+        assertEquals("1. second room\n2. third room\n", move.getResponse(testRoom));
+    }
 }

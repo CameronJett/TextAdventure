@@ -2,12 +2,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TextParser {
-    private String command = "";
-    private String object = "";
+    private String command;
+    private String object;
     private List<String> possibleCommands;
     private List<String> possibleObjects;
 
     public TextParser() {
+        command = "";
+        object = "";
         possibleCommands = new ArrayList<>();
         possibleObjects = new ArrayList<>();
     }
@@ -17,14 +19,14 @@ public class TextParser {
         object = "";
         input = input.toLowerCase();
 
-        for (int i=0; possibleCommands.size()>i; i++) {
-            if (input.contains(possibleCommands.get(i))) {
-                command = possibleCommands.get(i);
+        for (String possibleCommand : possibleCommands) {
+            if (input.contains(possibleCommand)) {
+                command = possibleCommand;
             }
         }
-        for (int i=0; possibleObjects.size()>i; i++) {
-            if (input.contains(possibleObjects.get(i))) {
-                object = possibleObjects.get(i);
+        for (String possibleObject : possibleObjects) {
+            if (input.contains(possibleObject)) {
+                object = possibleObject;
             }
         }
     }

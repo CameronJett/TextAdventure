@@ -17,6 +17,8 @@ public final class Const {
     public static final String DIALOG_OPTION = "dialog option";
     public static final String DIALOG_TEXT = "dialog text";
 
+    public static final String TEST_ENTRANCE_DIALOG = "test entrance";
+
     //commands
     public static final String MOVE = "move";
     public static final String TALK = "talk";

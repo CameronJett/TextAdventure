@@ -132,4 +132,12 @@ public class TextAdventureTests {
         HelpCommand help = new HelpCommand();
         assertEquals(Const.HELP_RESPONSE, help.getResponse());
     }
+
+    @Test
+    public void WhenYouEnterARoomForTheFirstTimeYouCanGetEntranceDialog() {
+        List<String> testEntrance = new ArrayList<>();
+        testEntrance.add(Const.TEST_ENTRANCE_DIALOG);
+        testRoom.createEntranceDialog(testEntrance);
+        assertEquals(testEntrance, testRoom.getEntranceDialog());
+    }
 }

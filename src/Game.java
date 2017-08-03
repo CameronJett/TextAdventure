@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Game {
+    private Room currentRoom;
     private List<Room> allRooms;
 
     public Game() {
@@ -30,6 +31,11 @@ public class Game {
 
                             Room room = new Room(name, description);
                             allRooms.add(room);
+
+                            //the first room in the file is the starting room
+                            if (currentRoom == null) {
+                                currentRoom = room;
+                            }
                         }
                         break;
                     case "Room:":

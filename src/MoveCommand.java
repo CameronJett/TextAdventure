@@ -1,15 +1,13 @@
-import java.util.List;
-
 public class MoveCommand {
 
     public String getResponse(Room room, String option) {
-        if (option.equals("move")) {
+        if (option.equals(Const.MOVE)) {
             return room.getExitChoices();
         } else if (room.hasExit(option)) {
             return "You moved to " + option + ".";
         }
 
-        return "You can't move there.";
+        return Const.CANT_MOVE_THERE;
     }
 
     public Room moveToNewRoom(Room room, String option) {

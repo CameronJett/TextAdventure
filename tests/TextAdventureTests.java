@@ -7,18 +7,18 @@ import java.util.List;
 import static junit.framework.TestCase.assertEquals;
 
 public class TextAdventureTests {
-    private Room testRoom = new Room("test room name", "test description");
+    private Room testRoom = new Room(Const.TEST_ROOM, Const.TEST_DESCRIPTION);
     private Room currentRoom = testRoom;
-    private Room secondRoom = new Room("second room", "second description");
-    private Room thirdRoom = new Room("third room", "third description");
+    private Room secondRoom = new Room(Const.SECOND_ROOM, Const.SECOND_DESCRIPTION);
+    private Room thirdRoom = new Room(Const.THIRD_ROOM, Const.THIRD_DESCRIPTION);
     private LookCommand look = new LookCommand();
     private MoveCommand move = new MoveCommand();
     private TextParser parser = new TextParser();
 
     @Before
     public void Init() {
-        parser.addCommand("move");
-        parser.addObject("kitchen");
+        parser.addCommand(Const.MOVE);
+        parser.addObject(Const.KITCHEN);
     }
 
     @Test
@@ -49,33 +49,33 @@ public class TextAdventureTests {
 
     @Test
     public void WhenYouLookAtARoomYouGetItsDescription() {
-        assertEquals("test description", look.getResponse(testRoom, testRoom.getName()));
+        assertEquals(Const.TEST_DESCRIPTION, look.getResponse(testRoom, testRoom.getName()));
     }
 
     @Test
     public void WhenYouAddMultipleRoomsYouCanGetAllDescriptions() {
-        assertEquals("test description", look.getResponse(testRoom, testRoom.getName()));
-        assertEquals("second description", look.getResponse(secondRoom, secondRoom.getName()));
+        assertEquals(Const.TEST_DESCRIPTION, look.getResponse(testRoom, testRoom.getName()));
+        assertEquals(Const.SECOND_DESCRIPTION, look.getResponse(secondRoom, secondRoom.getName()));
     }
 
     @Test
     public void WhenYouLookAtACharacterYouGetTheirDescription() {
-        Person testPerson = new Person("test name", "test person description");
-        assertEquals("test person description", look.getResponse(testPerson, testPerson.getName()));
+        Person testPerson = new Person(Const.TEST_NAME, Const.TEST_PERSON_DESCRIPTION);
+        assertEquals(Const.TEST_PERSON_DESCRIPTION, look.getResponse(testPerson, testPerson.getName()));
     }
 
     @Test
     public void WhenYouLookAtSomethingInterestingInTheRoomYouGetADescription() {
-        testRoom.addPointOfInterest("object", "objects description");
-        assertEquals("objects description", look.getResponse(testRoom, "object"));
+        testRoom.addPointOfInterest(Const.TEST_OBJECT, Const.TEST_OBJECT_DESCRIPTION);
+        assertEquals(Const.TEST_OBJECT_DESCRIPTION, look.getResponse(testRoom, Const.TEST_OBJECT));
     }
 
     @Test
     public void WhenYouTalkToSomeoneYouGetTheirDialogOptions() {
         TalkCommand talk = new TalkCommand();
-        Person testPerson = new Person("test name", "test person desription");
-        testPerson.addDialog("dialog option", "dialog text");
-        assertEquals("1. dialog option\n", talk.getResponse(testPerson, "test name"));
+        Person testPerson = new Person(Const.TEST_NAME, Const.TEST_PERSON_DESCRIPTION);
+        testPerson.addDialog(Const.DIALOG_OPTION, Const.DIALOG_TEXT);
+        assertEquals("1. dialog option\n", talk.getResponse(testPerson, Const.TEST_NAME));
     }
 
     @Test
@@ -86,44 +86,44 @@ public class TextAdventureTests {
         rooms.add(secondRoom);
         rooms.add(thirdRoom);
         MoveCommand move = new MoveCommand();
-        assertEquals("1. second room\n2. third room\n", move.getResponse(testRoom, "move"));
+        assertEquals("1. second room\n2. third room\n", move.getResponse(testRoom, Const.MOVE));
     }
 
     @Test
     public void WhenYouMoveToAPossibleExitItBecomesTheCurrentRoom() {
         testRoom.addExit(secondRoom);
-        assertEquals("You moved to second room.", move.getResponse(currentRoom, "second room"));
-        currentRoom = move.moveToNewRoom(currentRoom, "second room");
-        assertEquals(currentRoom.getName(), "second room");
+        assertEquals("You moved to second room.", move.getResponse(currentRoom, Const.SECOND_ROOM));
+        currentRoom = move.moveToNewRoom(currentRoom, Const.SECOND_ROOM);
+        assertEquals(currentRoom.getName(), Const.SECOND_ROOM);
     }
 
     @Test
     public void WhenYouMoveToARoomThatDoesNotExistYouDoNotMove() {
         testRoom.addExit(thirdRoom);
-        assertEquals("You can't move there.", move.getResponse(currentRoom, "second room"));
-        currentRoom = move.moveToNewRoom(currentRoom, "second room");
-        assertEquals(currentRoom.getName(), "test room name");
+        assertEquals(Const.CANT_MOVE_THERE, move.getResponse(currentRoom, Const.SECOND_ROOM));
+        currentRoom = move.moveToNewRoom(currentRoom, Const.SECOND_ROOM);
+        assertEquals(currentRoom.getName(), Const.TEST_ROOM);
     }
 
     @Test
     public void ParsingAStringWithMoveReturnsAMoveCommand() {
-        String input = "move";
+        String input = Const.MOVE;
         parser.parse(input);
-        assertEquals("move", parser.getCommand());
+        assertEquals(Const.MOVE, parser.getCommand());
     }
 
     @Test
     public void ParsingAStringWithMoveAndRoomReturnsBoth() {
         String input = "move kitchen";
         parser.parse(input);
-        assertEquals("move", parser.getCommand());
-        assertEquals("kitchen", parser.getObject());
+        assertEquals(Const.MOVE, parser.getCommand());
+        assertEquals(Const.KITCHEN, parser.getObject());
     }
 
     @Test
     public void ParsingTextWithUpperOrLowercaseReturnsProperly() {
-        String input = "MoVe";
+        String input = Const.MOVE;
         parser.parse(input);
-        assertEquals("move", parser.getCommand());
+        assertEquals(Const.MOVE, parser.getCommand());
     }
 }

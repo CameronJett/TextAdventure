@@ -122,8 +122,14 @@ public class TextAdventureTests {
 
     @Test
     public void ParsingTextWithUpperOrLowercaseReturnsProperly() {
-        String input = Const.MOVE;
+        String input = "mOvE";
         parser.parse(input);
         assertEquals(Const.MOVE, parser.getCommand());
+    }
+
+    @Test
+    public void WhenYouTypeHelpYouGetHelpInformation() {
+        HelpCommand help = new HelpCommand();
+        assertEquals(Const.HELP_RESPONSE, help.getResponse());
     }
 }

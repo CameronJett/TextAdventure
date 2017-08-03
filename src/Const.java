@@ -27,4 +27,5 @@ public final class Const {
 
     //responses
     public static final String CANT_MOVE_THERE = "You can't move there.";
+    public static final String HELP_RESPONSE = "Possible commands:\nMove Talk Look\n";
 }

@@ -19,6 +19,8 @@ public final class Const {
 
     public static final String TEST_ENTRANCE_DIALOG = "test entrance";
 
+    public static final String TEST_FILE_NAME = "src\\test game.txt";
+
     //commands
     public static final String MOVE = "move";
     public static final String TALK = "talk";

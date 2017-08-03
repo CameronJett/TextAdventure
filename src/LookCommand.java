@@ -1,4 +1,3 @@
-
 public class LookCommand {
 
     public String getResponse(Interactable entity, String name) {

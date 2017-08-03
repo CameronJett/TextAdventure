@@ -140,4 +140,10 @@ public class TextAdventureTests {
         testRoom.createEntranceDialog(testEntrance);
         assertEquals(testEntrance, testRoom.getEntranceDialog());
     }
+
+    @Test
+    public void YouCanCreateAGameFromATextFile() {
+        Game myGame = new Game();
+        assertEquals(true, myGame.load(Const.TEST_FILE_NAME));
+    }
 }

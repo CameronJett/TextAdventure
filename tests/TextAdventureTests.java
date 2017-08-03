@@ -96,4 +96,11 @@ public class TextAdventureTests {
         currentRoom = move.moveToNewRoom(currentRoom, "second room");
         assertEquals(currentRoom.getName(), "test room name");
     }
+
+    @Test
+    public void ParsingAStringWithMoveReturnsAMoveCommand() {
+        TextParser parser = new TextParser();
+        String input = "move";
+        assertEquals("move", parser.parse(input));
+    }
 }

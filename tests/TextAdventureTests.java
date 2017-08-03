@@ -1,3 +1,4 @@
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -12,6 +13,13 @@ public class TextAdventureTests {
     private Room thirdRoom = new Room("third room", "third description");
     private LookCommand look = new LookCommand();
     private MoveCommand move = new MoveCommand();
+    private TextParser parser = new TextParser();
+
+    @Before
+    public void Init() {
+        parser.addCommand("move");
+        parser.addObject("kitchen");
+    }
 
     @Test
     public void WhenYouAddAnExitRoomItIsAddedToPossibleMoveLocations() {
@@ -99,8 +107,23 @@ public class TextAdventureTests {
 
     @Test
     public void ParsingAStringWithMoveReturnsAMoveCommand() {
-        TextParser parser = new TextParser();
         String input = "move";
-        assertEquals("move", parser.parse(input));
+        parser.parse(input);
+        assertEquals("move", parser.getCommand());
+    }
+
+    @Test
+    public void ParsingAStringWithMoveAndRoomReturnsBoth() {
+        String input = "move kitchen";
+        parser.parse(input);
+        assertEquals("move", parser.getCommand());
+        assertEquals("kitchen", parser.getObject());
+    }
+
+    @Test
+    public void ParsingTextWithUpperOrLowercaseReturnsProperly() {
+        String input = "MoVe";
+        parser.parse(input);
+        assertEquals("move", parser.getCommand());
     }
 }

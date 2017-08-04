@@ -60,4 +60,8 @@ public class Room extends Interactable{
     public Person getPerson() {
         return person;
     }
+
+    public void removePerson() {
+        person = null;
+    }
 }

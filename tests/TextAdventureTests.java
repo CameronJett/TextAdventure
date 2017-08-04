@@ -162,4 +162,12 @@ public class TextAdventureTests {
         testRoom.addPerson(testPerson);
         assertEquals(testPerson, testRoom.getPerson());
     }
+
+    @Test
+    public void APersonCanLeaveARoom() {
+        Person testPerson = new Person(Const.TEST_NAME, Const.TEST_PERSON_DESCRIPTION);
+        testRoom.addPerson(testPerson);
+        testRoom.removePerson();
+        assertEquals(null, testRoom.getPerson());
+    }
 }

@@ -3,10 +3,12 @@ import java.util.List;
 
 public class Room extends Interactable{
     private List<Room> exits;
+    private Person person;
 
     public Room(String name, String description) {
         super(name, description);
         exits = new ArrayList<>();
+        person = null;
     }
 
     public void addExit(Room room) {
@@ -49,5 +51,13 @@ public class Room extends Interactable{
             dialogChoices = dialogChoices + i + ". " + exits.get(i-1).getName() + "\n";
         }
         return dialogChoices;
+    }
+
+    public void addPerson(Person p) {
+        person = p;
+    }
+
+    public Person getPerson() {
+        return person;
     }
 }

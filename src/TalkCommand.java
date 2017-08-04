@@ -2,7 +2,7 @@
 public class TalkCommand {
 
     public String getResponse(Person person, String option) {
-        if (person.getName().equals(option)) {
+        if (person.getName().equals(option) || option.equals(Const.TALK)) {
             //return dialog choices
             return person.getDialogChoices();
         } else if (person.hasDialog(option)) {

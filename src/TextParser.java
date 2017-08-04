@@ -29,6 +29,11 @@ public class TextParser {
                 object = possibleObject;
             }
         }
+
+        //this is so you can only type "move" "help" etc.
+        if (command.length()>0 && object.length()==0) {
+            object = command;
+        }
     }
 
     public String getCommand() {

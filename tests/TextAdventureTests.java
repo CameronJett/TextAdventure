@@ -170,4 +170,12 @@ public class TextAdventureTests {
         testRoom.removePerson();
         assertEquals(null, testRoom.getPerson());
     }
+
+    @Test
+    public void WhenYouLoadAnObjectItCanBeChosenInTheTextParser() {
+        Game myGame = new Game(parser);
+        myGame.load(Const.TEST_FILE_WITH_ROOMS_NAME);
+        parser.parse("look object");
+        assertEquals("object", parser.getObject());
+    }
 }

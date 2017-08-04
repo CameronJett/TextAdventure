@@ -10,9 +10,17 @@ public class Game {
     private List<Room> allRooms;
     private List<Person> allPeople;
 
+    private TextParser parser;
+
     public Game() {
         allRooms = new ArrayList<>();
         allPeople = new ArrayList<>();
+        parser = new TextParser();
+    }
+
+    public Game(TextParser p) {
+        this();
+        parser = p;
     }
 
     public boolean load(String fileName) {
@@ -33,6 +41,7 @@ public class Game {
 
                             Room room = new Room(name, description);
                             allRooms.add(room);
+                            parser.addObject(name);
 
                             //the first room in the file is the starting room
                             if (currentRoom == null) {
@@ -69,6 +78,7 @@ public class Game {
                                     String object = line.substring(0, line.indexOf(":"));
                                     String description = line.substring(line.indexOf(":") + 2);
                                     room.addPointOfInterest(object, description);
+                                    parser.addObject(object);
                                     break;
                             }
                         }
@@ -81,6 +91,7 @@ public class Game {
                         String desc = line.substring(line.indexOf(":") + 2);
                         Person person = new Person(name, desc);
                         allPeople.add(person);
+                        parser.addObject(name);
                         while (!(line = reader.readLine()).equals("")) {
                             switch (line.substring(0, line.indexOf(":"))) {
                                 case "Dialog":
@@ -94,6 +105,7 @@ public class Game {
                                     String object = line.substring(0, line.indexOf(":"));
                                     String description = line.substring(line.indexOf(":") + 2);
                                     person.addPointOfInterest(object, description);
+                                    parser.addObject(object);
                                     break;
                             }
                         }

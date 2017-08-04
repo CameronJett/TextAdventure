@@ -45,10 +45,10 @@ public class TextParser {
     }
 
     public void addCommand(String command) {
-        possibleCommands.add(command);
+        possibleCommands.add(command.toLowerCase());
     }
 
     public void addObject(String object) {
-        possibleObjects.add(object);
+        possibleObjects.add(object.toLowerCase());
     }
 }

@@ -8,9 +8,11 @@ import java.util.List;
 public class Game {
     private Room currentRoom;
     private List<Room> allRooms;
+    private List<Person> allPeople;
 
     public Game() {
         allRooms = new ArrayList<>();
+        allPeople = new ArrayList<>();
     }
 
     public boolean load(String fileName) {
@@ -67,6 +69,31 @@ public class Game {
                                     String object = line.substring(0, line.indexOf(":"));
                                     String description = line.substring(line.indexOf(":") + 2);
                                     room.addPointOfInterest(object, description);
+                                    break;
+                            }
+                        }
+                        break;
+                    case "Person:":
+                        //get name and description
+                        line = reader.readLine();
+
+                        String name = line.substring(0, line.indexOf(":"));
+                        String desc = line.substring(line.indexOf(":") + 2);
+                        Person person = new Person(name, desc);
+                        allPeople.add(person);
+                        while (!(line = reader.readLine()).equals("")) {
+                            switch (line.substring(0, line.indexOf(":"))) {
+                                case "Dialog":
+                                    line = line.substring(line.indexOf(":")+2);
+                                    String dialogOption = line.substring(0, line.indexOf(":"));
+                                    String dialogText = line.substring(line.indexOf(":") + 2);
+                                    person.addPointOfInterest(dialogOption, dialogText);
+                                    break;
+                                case "Interest":
+                                    line = line.substring(line.indexOf(":") + 2);
+                                    String object = line.substring(0, line.indexOf(":"));
+                                    String description = line.substring(line.indexOf(":") + 2);
+                                    person.addPointOfInterest(object, description);
                                     break;
                             }
                         }

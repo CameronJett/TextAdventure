@@ -152,4 +152,10 @@ public class TextAdventureTests {
         Game myGame = new Game();
         assertEquals(true, myGame.load(Const.TEST_FILE_WITH_ROOMS_NAME));
     }
+
+    @Test
+    public void YouCanCreateAGameWithPeopleFromATextFile() {
+        Game myGame = new Game();
+        assertEquals(true, myGame.load(Const.TEST_FILE_WITH_PEOPLE_NAME));
+    }
 }

@@ -21,6 +21,7 @@ public final class Const {
 
     public static final String TEST_FILE_NAME = "src\\test game.txt";
     public static final String TEST_FILE_WITH_ROOMS_NAME = "src\\test game with rooms.txt";
+    public static final String TEST_FILE_WITH_PEOPLE_NAME = "src\\test game with people.txt";
 
     //commands
     public static final String MOVE = "move";

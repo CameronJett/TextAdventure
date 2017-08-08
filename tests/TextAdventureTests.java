@@ -203,4 +203,12 @@ public class TextAdventureTests {
         take.getResponse(testRoom, Const.TEST_ITEM);
         assertEquals(true, inventory.hasItem(Const.TEST_ITEM));
     }
+
+    @Test
+    public void YouCanCheckYourInventory() {
+        Inventory inventory = new Inventory();
+        Item testItem = new Item(Const.TEST_ITEM, Const.TEST_ITEM_DESCRIPTION);
+        inventory.addItem(testItem);
+        assertEquals(Const.TEST_ITEM + "\n", inventory.getItemList());
+    }
 }

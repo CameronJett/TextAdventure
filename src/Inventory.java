@@ -19,4 +19,12 @@ public class Inventory {
         }
         return false;
     }
+
+    public String getItemList() {
+        String itemList = "";
+        for (Item item : allItems) {
+            itemList = itemList + item.getName() + "\n";
+        }
+        return itemList;
+    }
 }

@@ -134,8 +134,8 @@ public class TextAdventureTests {
     public void WhenYouEnterARoomForTheFirstTimeYouCanGetEntranceDialog() {
         List<String> testEntrance = new ArrayList<>();
         testEntrance.add(Const.TEST_ENTRANCE_DIALOG);
-        testRoom.createEntranceDialog(testEntrance);
-        assertEquals(testEntrance, testRoom.getEntranceDialog());
+        testRoom.createIntroductionDialog(testEntrance);
+        assertEquals(testEntrance, testRoom.getIntroductionDialog());
     }
 
     @Test

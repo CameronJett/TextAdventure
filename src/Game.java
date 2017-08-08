@@ -71,7 +71,7 @@ public class Game {
                                         line = line.substring(line.indexOf(":") + 2);
                                     }
                                     entranceDialog.add(line);
-                                    room.createEntranceDialog(entranceDialog);
+                                    room.createIntroductionDialog(entranceDialog);
                                     break;
                                 case "Interest":
                                     line = line.substring(line.indexOf(":") + 2);
@@ -122,7 +122,6 @@ public class Game {
                 e.printStackTrace();
             }
         }
-
         return true;
     }
 

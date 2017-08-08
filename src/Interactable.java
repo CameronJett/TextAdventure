@@ -7,6 +7,7 @@ public class Interactable extends GameEntity{
     private boolean firstIntroduction;
     private List<String> introductionDialog;
     private Map<String, String> pointsOfInterest;
+    private Item item;
 
     public Interactable(String tempName, String tempDescription) {
         super(tempName, tempDescription);
@@ -39,5 +40,13 @@ public class Interactable extends GameEntity{
 
     public String getPointOfInterest(String object) {
         return pointsOfInterest.get(object);
+    }
+
+    public void addItem(Item tempItem) {
+        item = tempItem;
+    }
+
+    public Item getItem() {
+        return item;
     }
 }

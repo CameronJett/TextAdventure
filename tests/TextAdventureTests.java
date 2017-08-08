@@ -178,4 +178,11 @@ public class TextAdventureTests {
         parser.parse("look object");
         assertEquals("object", parser.getObject());
     }
+
+    @Test
+    public void ARoomOrPersonCanHoldAnItem() {
+        Item testItem = new Item("item name", "item description");
+        testRoom.addItem(testItem);
+        assertEquals("item name", testRoom.getItem().getName());
+    }
 }

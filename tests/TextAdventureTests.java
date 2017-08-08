@@ -221,4 +221,14 @@ public class TextAdventureTests {
         testPerson.addItemDialog(testItem.getName(), Const.TEST_SHOW_ITEM_RESPONSE);
         assertEquals(Const.TEST_SHOW_ITEM_RESPONSE, show.getResponse(testRoom, testItem.getName()));
     }
+
+    @Test
+    public void APersonsNoItemDialogCanBeCustomized() {
+        ShowCommand show = new ShowCommand();
+        Person testPerson = new Person(Const.TEST_NAME, Const.TEST_PERSON_DESCRIPTION);
+        testPerson.changeNoItemDialog(Const.TEST_NO_ITEM_DIALOG);
+        testRoom.addPerson(testPerson);
+        Item testItem = new Item(Const.TEST_ITEM, Const.TEST_ITEM_DESCRIPTION);
+        assertEquals(Const.TEST_NO_ITEM_DIALOG, show.getResponse(testRoom, testItem.getName()));
+    }
 }

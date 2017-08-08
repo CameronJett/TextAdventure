@@ -4,11 +4,13 @@ import java.util.Map;
 public class Person extends Interactable{
     private Map<String, String> dialog;
     private Map<String, String> itemDialog;
+    private String noItemDialog;
 
     public Person(String name, String description) {
         super(name, description);
         dialog = new HashMap<>();
         itemDialog = new HashMap<>();
+        noItemDialog = Const.DEFAULT_NO_ITEM_DIALOG;
     }
 
     public void addDialog(String option, String response) {
@@ -44,6 +46,10 @@ public class Person extends Interactable{
                 return itemDialog.get(key);
             }
         }
-        return "I don't know about that";
+        return noItemDialog;
+    }
+
+    public void changeNoItemDialog(String tempDialog) {
+        noItemDialog = tempDialog;
     }
 }

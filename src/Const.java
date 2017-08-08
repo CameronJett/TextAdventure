@@ -11,6 +11,7 @@ final class Const {
     static final String TEST_NAME = "test name";
     static final String TEST_PERSON_DESCRIPTION = "test person description";
     static final String TEST_SHOW_ITEM_RESPONSE = "wow cool test item";
+    static final String TEST_NO_ITEM_DIALOG = "what is that thing test";
 
     static final String TEST_OBJECT = "object";
     static final String TEST_OBJECT_DESCRIPTION = "object description";
@@ -38,4 +39,7 @@ final class Const {
     //responses
     static final String CANT_MOVE_THERE = "You can't move there.";
     static final String HELP_RESPONSE = "Possible commands:\nMove Talk Look\n";
+
+    //dialog
+    static final String DEFAULT_NO_ITEM_DIALOG = "I don't have anything to say about that.";
 }

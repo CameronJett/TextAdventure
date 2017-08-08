@@ -2,11 +2,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Person extends Interactable{
-    Map<String, String> dialog;
+    private Map<String, String> dialog;
+    private Map<String, String> itemDialog;
 
     public Person(String name, String description) {
         super(name, description);
         dialog = new HashMap<>();
+        itemDialog = new HashMap<>();
     }
 
     public void addDialog(String option, String response) {
@@ -22,13 +24,26 @@ public class Person extends Interactable{
     }
 
     public String getDialogChoices() {
-        String dialogChoices = "";
+        StringBuilder dialogChoices = new StringBuilder();
 
         int i = 1;
         for (String key : dialog.keySet()) {
-            dialogChoices = dialogChoices + i + ". " + key + "\n";
+            dialogChoices.append(i).append(". ").append(key).append("\n");
             i++;
         }
-        return dialogChoices;
+        return dialogChoices.toString();
+    }
+
+    public void addItemDialog(String item, String response) {
+        itemDialog.put(item, response);
+    }
+
+    public String getItemDialog(String item) {
+        for (String key : itemDialog.keySet()) {
+            if (key.equals(item)) {
+                return itemDialog.get(key);
+            }
+        }
+        return "I don't know about that";
     }
 }

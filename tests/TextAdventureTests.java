@@ -211,4 +211,14 @@ public class TextAdventureTests {
         inventory.addItem(testItem);
         assertEquals(Const.TEST_ITEM + "\n", inventory.getItemList());
     }
+
+    @Test
+    public void AnItemCanBeShownToAPerson() {
+        ShowCommand show = new ShowCommand();
+        Person testPerson = new Person(Const.TEST_NAME, Const.TEST_PERSON_DESCRIPTION);
+        testRoom.addPerson(testPerson);
+        Item testItem = new Item(Const.TEST_ITEM, Const.TEST_ITEM_DESCRIPTION);
+        testPerson.addItemDialog(testItem.getName(), Const.TEST_SHOW_ITEM_RESPONSE);
+        assertEquals(Const.TEST_SHOW_ITEM_RESPONSE, show.getResponse(testRoom, testItem.getName()));
+    }
 }

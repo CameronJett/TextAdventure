@@ -45,12 +45,12 @@ public class Room extends Interactable{
     }
 
     public String getExitChoices() {
-        String dialogChoices = "";
+        StringBuilder dialogChoices = new StringBuilder();
 
         for (int i=1; i <= exits.size(); i++) {
-            dialogChoices = dialogChoices + i + ". " + exits.get(i-1).getName() + "\n";
+            dialogChoices.append(i).append(". ").append(exits.get(i - 1).getName()).append("\n");
         }
-        return dialogChoices;
+        return dialogChoices.toString();
     }
 
     public void addPerson(Person p) {
@@ -63,5 +63,9 @@ public class Room extends Interactable{
 
     public void removePerson() {
         person = null;
+    }
+
+    public boolean hasPerson() {
+        return person != null;
     }
 }

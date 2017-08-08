@@ -10,6 +10,7 @@ final class Const {
 
     static final String TEST_NAME = "test name";
     static final String TEST_PERSON_DESCRIPTION = "test person description";
+    static final String TEST_SHOW_ITEM_RESPONSE = "wow cool test item";
 
     static final String TEST_OBJECT = "object";
     static final String TEST_OBJECT_DESCRIPTION = "object description";

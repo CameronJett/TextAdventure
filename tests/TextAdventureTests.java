@@ -183,7 +183,7 @@ public class TextAdventureTests {
     public void ARoomOrPersonCanHoldAnItem() {
         Item testItem = new Item(Const.TEST_ITEM, Const.TEST_ITEM_DESCRIPTION);
         testRoom.addItem(testItem);
-        assertEquals(Const.TEST_ITEM, testRoom.getItem().getName());
+        assertEquals(true, testRoom.hasItem(Const.TEST_ITEM));
     }
 
     @Test
@@ -192,5 +192,15 @@ public class TextAdventureTests {
         Item testItem = new Item(Const.TEST_ITEM, Const.TEST_ITEM_DESCRIPTION);
         inventory.addItem(testItem);
         assertEquals(true, inventory.hasItem(testItem.getName()));
+    }
+
+    @Test
+    public void AnItemInARoomCanBeTakenIntoYourInventory() {
+        Inventory inventory = new Inventory();
+        Item testItem = new Item(Const.TEST_ITEM, Const.TEST_ITEM_DESCRIPTION);
+        testRoom.addItem(testItem);
+        TakeCommand take = new TakeCommand(inventory);
+        take.getResponse(testRoom, Const.TEST_ITEM);
+        assertEquals(true, inventory.hasItem(Const.TEST_ITEM));
     }
 }

@@ -181,8 +181,16 @@ public class TextAdventureTests {
 
     @Test
     public void ARoomOrPersonCanHoldAnItem() {
-        Item testItem = new Item("item name", "item description");
+        Item testItem = new Item(Const.TEST_ITEM, Const.TEST_ITEM_DESCRIPTION);
         testRoom.addItem(testItem);
-        assertEquals("item name", testRoom.getItem().getName());
+        assertEquals(Const.TEST_ITEM, testRoom.getItem().getName());
+    }
+
+    @Test
+    public void YouCanTakeAnItemIntoYourInventory() {
+        Inventory inventory = new Inventory();
+        Item testItem = new Item(Const.TEST_ITEM, Const.TEST_ITEM_DESCRIPTION);
+        inventory.addItem(testItem);
+        assertEquals(true, inventory.hasItem(testItem.getName()));
     }
 }

@@ -27,4 +27,17 @@ public class Inventory {
         }
         return itemList;
     }
+
+    public void removeItem(String itemName) {
+        Item itemToRemove = null;
+        for (Item item : allItems) {
+            if (item.getName().equals(itemName)) {
+                itemToRemove = item;
+            }
+        }
+
+        if (itemToRemove != null) {
+            allItems.remove(itemToRemove);
+        }
+    }
 }

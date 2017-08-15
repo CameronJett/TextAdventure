@@ -231,4 +231,14 @@ public class TextAdventureTests {
         Item testItem = new Item(Const.TEST_ITEM, Const.TEST_ITEM_DESCRIPTION);
         assertEquals(Const.TEST_NO_ITEM_DIALOG, show.getResponse(testRoom, testItem.getName()));
     }
+
+    @Test
+    public void WhenAnItemIsUsedItIsTakenOutOfYourInventory() {
+        UseCommand use = new UseCommand();
+        Inventory inventory = new Inventory();
+        Item testItem = new Item(Const.TEST_ITEM, Const.TEST_ITEM_DESCRIPTION);
+        inventory.addItem(testItem);
+        use.get_response(inventory, Const.TEST_ITEM);
+        assertEquals(false, inventory.hasItem(Const.TEST_ITEM));
+    }
 }

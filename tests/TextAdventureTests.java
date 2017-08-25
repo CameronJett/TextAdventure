@@ -261,4 +261,17 @@ public class TextAdventureTests {
         use.add_item_use_location(testRoom, testItem);
         assertEquals(Const.YOU_USED_THE_ITEM + testItem.getName(), use.get_response(testRoom, inventory, Const.TEST_ITEM));
     }
+
+    @Test
+    public void WhenAnItemIsUsedItCanAddANewExit() {
+        UseCommand use = new UseCommand();
+        Inventory inventory = new Inventory();
+        Item testItem = new Item(Const.TEST_ITEM, Const.TEST_ITEM_DESCRIPTION);
+        inventory.addItem(testItem);
+        use.add_item_use_location(testRoom, testItem);
+        use.item_add_exit(testItem, thirdRoom);
+        assertEquals(false, testRoom.hasExit(thirdRoom.getName()));
+        use.get_response(testRoom, inventory, Const.TEST_ITEM);
+        assertEquals(true, testRoom.hasExit(thirdRoom.getName()));
+    }
 }

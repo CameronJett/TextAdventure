@@ -8,8 +8,8 @@ public class TakeCommand {
     public String getResponse(Interactable entity, String itemName) {
         if (entity.hasItem(itemName)) {
             inventory.addItem(entity.takeItem(itemName));
-            return "You took the " + itemName;
+            return Const.YOU_TOOK + itemName;
         }
-        return "You can't take " + itemName;
+        return Const.CANT_TAKE_THAT;
     }
 }

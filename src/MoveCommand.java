@@ -4,7 +4,7 @@ public class MoveCommand {
         if (option.equals(Const.MOVE)) {
             return room.getExitChoices();
         } else if (room.hasExit(option)) {
-            return "You moved to " + option + ".";
+            return Const.YOU_MOVED + option + ".";
         }
 
         return Const.CANT_MOVE_THERE;

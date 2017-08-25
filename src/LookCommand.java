@@ -6,6 +6,6 @@ public class LookCommand {
         } else if (entity.contains(name)) {
             return entity.getPointOfInterest(name);
         }
-        return "That isn't very interesting.";
+        return Const.LOOK_NOT_INTERESTING;
     }
 }

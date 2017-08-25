@@ -274,4 +274,16 @@ public class TextAdventureTests {
         use.get_response(testRoom, inventory, Const.TEST_ITEM);
         assertEquals(true, testRoom.hasExit(thirdRoom.getName()));
     }
+
+    @Test
+    public void WhenYouShowSomeoneAnItemTheyCanGetNewDialog() {
+        ShowCommand show = new ShowCommand();
+        Person testPerson = new Person(Const.TEST_NAME, Const.TEST_PERSON_DESCRIPTION);
+        testPerson.changeNoItemDialog(Const.TEST_NO_ITEM_DIALOG);
+        testRoom.addPerson(testPerson);
+        Item testItem = new Item(Const.TEST_ITEM, Const.TEST_ITEM_DESCRIPTION);
+        show.item_add_dialog(testItem, testPerson, Const.DIALOG_OPTION, Const.DIALOG_TEXT);
+        show.getResponse(testRoom, testItem.getName());
+        assertEquals("1. " + Const.DIALOG_OPTION + "\n", testPerson.getDialogChoices());
+    }
 }

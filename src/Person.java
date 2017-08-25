@@ -17,6 +17,10 @@ public class Person extends Interactable{
         dialog.put(option, response);
     }
 
+    public void addDialog(Map<String, String> dialogToAdd) {
+        dialog.putAll(dialogToAdd);
+    }
+
     public boolean hasDialog(String option) {
         return dialog.containsKey(option);
     }

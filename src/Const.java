@@ -41,6 +41,15 @@ final class Const {
     static final String DONT_HAVE_THAT_ITEM = "You don't have anything like that.";
     static final String CANT_USE_THERE = "You can't use that here";
     static final String YOU_USED_THE_ITEM = "You used the ";
+
+    static final String YOU_MOVED = "You moved to ";
+    static final String YOU_TOOK = "You took the ";
+
+    static final String LOOK_NOT_INTERESTING = "That isn't very interesting.";
+    static final String NO_ONE_TO_SHOW = "There is no one around to show that to.";
+    static final String NO_ONE_TO_TALK_TO = "There is no one around to talk to.";
+    static final String CANT_TAKE_THAT = "You can't take that.";
+
     static final String HELP_RESPONSE = "Possible commands:\nMove Talk Look\n";
 
     //dialog

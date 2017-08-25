@@ -9,6 +9,6 @@ public class TalkCommand {
             //return dialog text
             return person.getDialog(option);
         }
-        return "There is no one to talk to.";
+        return Const.NO_ONE_TO_TALK_TO;
     }
 }

@@ -251,4 +251,14 @@ public class TextAdventureTests {
         inventory.addItem(testItem);
         assertEquals(Const.CANT_USE_THERE, use.get_response(testRoom, inventory, Const.TEST_ITEM));
     }
+
+    @Test
+    public void WhenAnItemIsUsedInTheCorrectPlaceItTellsYouItWasUsed() {
+        UseCommand use = new UseCommand();
+        Inventory inventory = new Inventory();
+        Item testItem = new Item(Const.TEST_ITEM, Const.TEST_ITEM_DESCRIPTION);
+        inventory.addItem(testItem);
+        use.add_item_use_location(testRoom, testItem);
+        assertEquals(Const.YOU_USED_THE_ITEM + testItem.getName(), use.get_response(testRoom, inventory, Const.TEST_ITEM));
+    }
 }

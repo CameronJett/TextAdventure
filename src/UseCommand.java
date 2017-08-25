@@ -16,7 +16,7 @@ public class UseCommand {
                if (key.getName().equals(item)) {
                    if (itemUseLocation.get(key).equals(room)) {
                        inventory.removeItem(item);
-                       return "You used the " + item;
+                       return Const.YOU_USED_THE_ITEM + item;
                    }
                }
             }

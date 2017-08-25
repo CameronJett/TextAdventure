@@ -238,7 +238,17 @@ public class TextAdventureTests {
         Inventory inventory = new Inventory();
         Item testItem = new Item(Const.TEST_ITEM, Const.TEST_ITEM_DESCRIPTION);
         inventory.addItem(testItem);
-        use.get_response(inventory, Const.TEST_ITEM);
+        use.add_item_use_location(testRoom, testItem);
+        use.get_response(testRoom, inventory, Const.TEST_ITEM);
         assertEquals(false, inventory.hasItem(Const.TEST_ITEM));
+    }
+
+    @Test
+    public void WhenAnItemIsUsedInTheWrongRoomItTellsYouNothingHappened() {
+        UseCommand use = new UseCommand();
+        Inventory inventory = new Inventory();
+        Item testItem = new Item(Const.TEST_ITEM, Const.TEST_ITEM_DESCRIPTION);
+        inventory.addItem(testItem);
+        assertEquals(Const.CANT_USE_THERE, use.get_response(testRoom, inventory, Const.TEST_ITEM));
     }
 }

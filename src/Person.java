@@ -9,17 +9,23 @@ public class Person extends Interactable{
         dialog = new CharacterDialog();
     }
 
-    public void addDialog(String option, String response) { dialog.add(option, response); }
+    public void addDialog(String option, String response) { dialog.add(option, response, Const.NULL_CHAR); }
 
     public void addDialog(Map<String, String> dialogToAdd) { dialog.addAll(dialogToAdd); }
+
+    public void addDialog(String option, String response, Character hiddenLink) {
+        dialog.add(option, response, hiddenLink);
+    }
+
+    public void addHiddenDialog(Character hiddenLink, String option, String response) {
+        dialog.addHidden(hiddenLink, option, response);
+    }
 
     public boolean hasDialog(String option) {
         return dialog.hasDialog(option);
     }
 
-    public String getDialog(String option) {
-        return dialog.getDialog(option);
-    }
+    public String getDialog(String option) { return dialog.getDialog(option); }
 
     public String getDialogChoices() { return dialog.getDialogChoices(); }
 

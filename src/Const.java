@@ -21,6 +21,7 @@ final class Const {
 
     static final String DIALOG_OPTION = "dialog option";
     static final String DIALOG_TEXT = "dialog text";
+    static final String HIDDEN_DIALOG = "hidden dialog";
 
     static final String TEST_ENTRANCE_DIALOG = "test entrance";
 

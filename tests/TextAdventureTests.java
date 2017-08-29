@@ -286,4 +286,17 @@ public class TextAdventureTests {
         show.getResponse(testRoom, testItem.getName());
         assertEquals("1. " + Const.DIALOG_OPTION + "\n", testPerson.getDialogChoices());
     }
+
+    @Test
+    public void APersonsDialogCanAddAHiddenDialogAfterTalking() {
+        TalkCommand talk = new TalkCommand();
+        Person testPerson = new Person(Const.TEST_NAME, Const.TEST_PERSON_DESCRIPTION);
+        Character hiddenLink = 'A';
+        testPerson.addDialog(Const.DIALOG_OPTION, Const.DIALOG_TEXT, hiddenLink);
+        testPerson.addHiddenDialog(hiddenLink, Const.HIDDEN_DIALOG, Const.DIALOG_TEXT);
+        assertEquals("1. " + Const.DIALOG_OPTION + "\n", testPerson.getDialogChoices());
+        talk.getResponse(testPerson, Const.DIALOG_OPTION);
+        assertEquals("1. " + Const.DIALOG_OPTION + "\n"
+                + "2. " + Const.HIDDEN_DIALOG + "\n", testPerson.getDialogChoices());
+    }
 }

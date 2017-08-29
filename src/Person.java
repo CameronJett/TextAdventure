@@ -2,58 +2,30 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Person extends Interactable{
-    private Map<String, String> dialog;
-    private Map<String, String> itemDialog;
-    private String noItemDialog;
+    private CharacterDialog dialog;
 
     public Person(String name, String description) {
         super(name, description);
-        dialog = new HashMap<>();
-        itemDialog = new HashMap<>();
-        noItemDialog = Const.DEFAULT_NO_ITEM_DIALOG;
+        dialog = new CharacterDialog();
     }
 
-    public void addDialog(String option, String response) {
-        dialog.put(option, response);
-    }
+    public void addDialog(String option, String response) { dialog.add(option, response); }
 
-    public void addDialog(Map<String, String> dialogToAdd) {
-        dialog.putAll(dialogToAdd);
-    }
+    public void addDialog(Map<String, String> dialogToAdd) { dialog.addAll(dialogToAdd); }
 
     public boolean hasDialog(String option) {
-        return dialog.containsKey(option);
+        return dialog.hasDialog(option);
     }
 
     public String getDialog(String option) {
-        return dialog.get(option);
+        return dialog.getDialog(option);
     }
 
-    public String getDialogChoices() {
-        StringBuilder dialogChoices = new StringBuilder();
+    public String getDialogChoices() { return dialog.getDialogChoices(); }
 
-        int i = 1;
-        for (String key : dialog.keySet()) {
-            dialogChoices.append(i).append(". ").append(key).append("\n");
-            i++;
-        }
-        return dialogChoices.toString();
-    }
+    public void addItemDialog(String item, String response) { dialog.addItemDialog(item, response); }
 
-    public void addItemDialog(String item, String response) {
-        itemDialog.put(item, response);
-    }
+    public String getItemDialog(String item) { return dialog.getItemDialog(item); }
 
-    public String getItemDialog(String item) {
-        for (String key : itemDialog.keySet()) {
-            if (key.equals(item)) {
-                return itemDialog.get(key);
-            }
-        }
-        return noItemDialog;
-    }
-
-    public void changeNoItemDialog(String tempDialog) {
-        noItemDialog = tempDialog;
-    }
+    public void changeNoItemDialog(String tempDialog) { dialog.changeNoItemDialog(tempDialog); }
 }

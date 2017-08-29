@@ -54,4 +54,5 @@ final class Const {
 
     //dialog
     static final String DEFAULT_NO_ITEM_DIALOG = "I don't have anything to say about that.";
+    static final Character NULL_CHAR = '\u0000';
 }

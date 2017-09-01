@@ -1,34 +1,34 @@
-Rooms:
-Bedroom: This room has a bed in it.
-Kitchen: This room has food.
-Store: This is a store.
+Rooms::
+Bedroom::This room has a bed in it.
+Kitchen::This room has food.
+Store::This is a store.
 
-Items:
-First Item: This is the first item
-Second Item: This is the second item
+Items::
+First Item::This is the first item
+Second Item::This is the second item
 
-People:
-Name: description
-Other Name: other person
+People::
+Name::description
+Other Name::other person
 
-Item:
+Item::
 First Item
-Use: Bedroom
-Exit: Store
+Use::Bedroom
+Exit::Store
 
-Person:
+Person::
 Name
-Dialog: dialog option: dialog text
-Dialog: more dialog: more text
-Interest: thing: what thing looks like
-Dialog: even more dialog: adds new: A
-Hidden: this dialog option: it was hidden: A
-Item Hold: Second Item
-Item Text: First Item: Wow that's the first item.
-Item No Text: I know nothing about that.
+Dialog::dialog option::dialog text
+Dialog::more dialog::more text
+Interest::thing::what thing looks like
+Dialog::even more dialog::adds new::A
+Hidden::this dialog option:: it was hidden::A
+Item Hold::Second Item
+Item Text::First Item::Wow that's the first item.
+Item No Text::I know nothing about that.
 
-Room:
+Room::
 Bedroom
-Person: Name
+Person::Name
 
 END

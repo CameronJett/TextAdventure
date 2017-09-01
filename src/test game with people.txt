@@ -1,15 +1,15 @@
-People:
-Name: description
-Other name: other person
+People::
+Name::description
+Other name::other person
 
-Person:
+Person::
 Name
-Dialog: dialog option: dialog text
-Dialog: more dialog: more text
-Interest: thing: what thing looks like
+Dialog::dialog option::dialog text
+Dialog::more dialog::more text
+Interest::thing::what thing looks like
 
-Person:
+Person::
 Other name
-Dialog: more dialog: more dialog text
+Dialog::more dialog::more dialog text
 
 END

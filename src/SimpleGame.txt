@@ -1,0 +1,40 @@
+Rooms::
+Bedroom::This is a simple bedroom. The sheets are dirty.
+Bathroom::This is a simple bathroom. There is a key on the sink.
+Store::This is a cool store.
+
+People::
+Store owner::This is the store Owner, he's wearing a nice tie.
+
+Items::
+Key::Key to my bedroom door.
+
+Room::
+Bedroom
+Interest::Sheets::The sheets are really dirty.
+Exit::Bathroom
+
+Room::
+Bathroom
+Item::Key
+Entrance::This is the bathroom, there is a key on the sink.
+Exit::Bedroom
+
+Room::
+Store
+Person::Store owner
+Entrance::Nice store!
+
+Person::
+Store owner
+Dialog::Buy something!::Buy something will ya!
+Dialog::About the store.::I've had this store for ten years.::A
+Hidden::Ten whole years.::I'll never sell.::A
+Interest::Tie::He's wearing an old tie.
+
+Item::
+Key
+Use::Bedroom
+Exit::Store
+
+END

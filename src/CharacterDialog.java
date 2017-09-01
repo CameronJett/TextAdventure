@@ -46,6 +46,17 @@ public class CharacterDialog {
         return dialog.get(option);
     }
 
+    public String getDialog(int i) {
+        int j = 1;
+        for (String key : dialog.keySet()) {
+            if (i == j) {
+                return dialog.get(key);
+            }
+            j++;
+        }
+        return "";
+    }
+
     public String getDialogChoices() {
         StringBuilder dialogChoices = new StringBuilder();
 

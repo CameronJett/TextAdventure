@@ -1,5 +1,5 @@
 public class UseCommand {
-    public String get_response(Room room, Inventory inventory, String item) {
+    public String getResponse(Room room, Inventory inventory, String item) {
         if (!inventory.hasItem(item)) {
             return Const.DONT_HAVE_THAT_ITEM;
         } else {

@@ -61,7 +61,8 @@ public class TextAdventureTests {
     @Test
     public void WhenYouLookAtACharacterYouGetTheirDescription() {
         Person testPerson = new Person(Const.TEST_NAME, Const.TEST_PERSON_DESCRIPTION);
-        assertEquals(Const.TEST_PERSON_DESCRIPTION, look.getResponse(testPerson, testPerson.getName()));
+        thirdRoom.addPerson(testPerson);
+        assertEquals(Const.TEST_PERSON_DESCRIPTION, look.getResponse(thirdRoom, testPerson.getName()));
     }
 
     @Test
@@ -75,7 +76,8 @@ public class TextAdventureTests {
         TalkCommand talk = new TalkCommand();
         Person testPerson = new Person(Const.TEST_NAME, Const.TEST_PERSON_DESCRIPTION);
         testPerson.addDialog(Const.DIALOG_OPTION, Const.DIALOG_TEXT);
-        assertEquals("1. dialog option\n", talk.getResponse(testPerson, Const.TEST_NAME));
+        thirdRoom.addPerson(testPerson);
+        assertEquals("1. dialog option\n", talk.getResponse(thirdRoom, Const.TEST_NAME));
     }
 
     @Test
@@ -239,7 +241,7 @@ public class TextAdventureTests {
         Item testItem = new Item(Const.TEST_ITEM, Const.TEST_ITEM_DESCRIPTION);
         inventory.addItem(testItem);
         testItem.addUseLocation(testRoom);
-        use.get_response(testRoom, inventory, Const.TEST_ITEM);
+        use.getResponse(testRoom, inventory, Const.TEST_ITEM);
         assertEquals(false, inventory.hasItem(Const.TEST_ITEM));
     }
 
@@ -249,7 +251,7 @@ public class TextAdventureTests {
         Inventory inventory = new Inventory();
         Item testItem = new Item(Const.TEST_ITEM, Const.TEST_ITEM_DESCRIPTION);
         inventory.addItem(testItem);
-        assertEquals(Const.CANT_USE_THERE, use.get_response(testRoom, inventory, Const.TEST_ITEM));
+        assertEquals(Const.CANT_USE_THERE, use.getResponse(testRoom, inventory, Const.TEST_ITEM));
     }
 
     @Test
@@ -259,7 +261,7 @@ public class TextAdventureTests {
         Item testItem = new Item(Const.TEST_ITEM, Const.TEST_ITEM_DESCRIPTION);
         inventory.addItem(testItem);
         testItem.addUseLocation(testRoom);
-        assertEquals(Const.YOU_USED_THE_ITEM + testItem.getName(), use.get_response(testRoom, inventory, Const.TEST_ITEM));
+        assertEquals(Const.YOU_USED_THE_ITEM + testItem.getName(), use.getResponse(testRoom, inventory, Const.TEST_ITEM));
     }
 
     @Test
@@ -271,7 +273,7 @@ public class TextAdventureTests {
         testItem.addUseLocation(testRoom);
         testItem.addExitAfterUse(thirdRoom);
         assertEquals(false, testRoom.hasExit(thirdRoom.getName()));
-        use.get_response(testRoom, inventory, Const.TEST_ITEM);
+        use.getResponse(testRoom, inventory, Const.TEST_ITEM);
         assertEquals(true, testRoom.hasExit(thirdRoom.getName()));
     }
 
@@ -294,8 +296,9 @@ public class TextAdventureTests {
         Character hiddenLink = 'A';
         testPerson.addDialog(Const.DIALOG_OPTION, Const.DIALOG_TEXT, hiddenLink);
         testPerson.addHiddenDialog(hiddenLink, Const.HIDDEN_DIALOG, Const.DIALOG_TEXT);
+        secondRoom.addPerson(testPerson);
         assertEquals("1. " + Const.DIALOG_OPTION + "\n", testPerson.getDialogChoices());
-        talk.getResponse(testPerson, Const.DIALOG_OPTION);
+        talk.getResponse(secondRoom, Const.DIALOG_OPTION);
         assertEquals("1. " + Const.DIALOG_OPTION + "\n"
                 + "2. " + Const.HIDDEN_DIALOG + "\n", testPerson.getDialogChoices());
     }
@@ -304,5 +307,15 @@ public class TextAdventureTests {
     public void YouCanCreateAGameWithPeopleItemsHiddenDialogFromATextFile() {
         Game myGame = new Game();
         assertEquals(true, myGame.load(Const.TEST_FILE_WITH_ITEMS_AND_HIDDEN_DIALOG));
+    }
+
+    @Test
+    public void YouCanChooseToTalkBasedOnNumber() {
+        TalkCommand talk = new TalkCommand();
+        Person testPerson = new Person(Const.TEST_NAME, Const.TEST_PERSON_DESCRIPTION);
+        testPerson.addDialog(Const.DIALOG_OPTION, Const.DIALOG_TEXT);
+        secondRoom.addPerson(testPerson);
+        assertEquals(Const.DIALOG_TEXT, talk.getResponse(secondRoom, "1"));
+
     }
 }

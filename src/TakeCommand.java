@@ -5,10 +5,17 @@ public class TakeCommand {
         inventory = inv;
     }
 
-    public String getResponse(Interactable entity, String itemName) {
-        if (entity.hasItem(itemName)) {
-            inventory.addItem(entity.takeItem(itemName));
+    public String getResponse(Room room, String itemName) {
+        if (room.hasItem(itemName)) {
+            inventory.addItem(room.takeItem(itemName));
             return Const.YOU_TOOK + itemName;
+        } else {
+            if (room.hasPerson()) {
+                if (room.getPerson().hasItem(itemName)) {
+                    inventory.addItem(room.takeItem(itemName));
+                    return Const.YOU_TOOK + itemName;
+                }
+            }
         }
         return Const.CANT_TAKE_THAT;
     }

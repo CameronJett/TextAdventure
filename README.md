@@ -7,6 +7,11 @@ A simple text adventure game and engine.
  
   * You can create a game by text file, look at the "test game with rooms.txt" for an example.  To do so you must first create any people in the game, then list the rooms, then list each room and what is inside of each room.
   
-Things still needing to be added:
+Things still possible to be added:
+   * Get entrance dialog working
+   * Add multiple names to be able to take an item ('key' for 'room key', refactor textparser)
+   * Tokenize parser instead of using contains
    * Add way to put on easy to Uppercase meaningful words?
+   * Add a way to finish ("win")
+   * Add a way to save
   

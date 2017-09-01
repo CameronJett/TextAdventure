@@ -1,4 +1,3 @@
-import java.util.HashMap;
 import java.util.Map;
 
 public class Person extends Interactable{
@@ -25,13 +24,17 @@ public class Person extends Interactable{
         return dialog.hasDialog(option);
     }
 
-    public String getDialog(String option) { return dialog.getDialog(option); }
+    public boolean hasDialog(int i) { return dialog.getDialogChoices().length() >= i; }
+
+    public String getDialog(String option) { return dialog.getDialog(option).toLowerCase(); }
+
+    public String getDialog(int i) { return dialog.getDialog(i); }
 
     public String getDialogChoices() { return dialog.getDialogChoices(); }
 
     public void addItemDialog(String item, String response) { dialog.addItemDialog(item, response); }
 
-    public String getItemDialog(String item) { return dialog.getItemDialog(item); }
+    public String getItemDialog(String item) { return dialog.getItemDialog(item).toLowerCase(); }
 
     public void changeNoItemDialog(String tempDialog) { dialog.changeNoItemDialog(tempDialog); }
 }

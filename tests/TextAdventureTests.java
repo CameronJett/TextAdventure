@@ -238,7 +238,7 @@ public class TextAdventureTests {
         Inventory inventory = new Inventory();
         Item testItem = new Item(Const.TEST_ITEM, Const.TEST_ITEM_DESCRIPTION);
         inventory.addItem(testItem);
-        use.add_item_use_location(testRoom, testItem);
+        testItem.addUseLocation(testRoom);
         use.get_response(testRoom, inventory, Const.TEST_ITEM);
         assertEquals(false, inventory.hasItem(Const.TEST_ITEM));
     }
@@ -258,7 +258,7 @@ public class TextAdventureTests {
         Inventory inventory = new Inventory();
         Item testItem = new Item(Const.TEST_ITEM, Const.TEST_ITEM_DESCRIPTION);
         inventory.addItem(testItem);
-        use.add_item_use_location(testRoom, testItem);
+        testItem.addUseLocation(testRoom);
         assertEquals(Const.YOU_USED_THE_ITEM + testItem.getName(), use.get_response(testRoom, inventory, Const.TEST_ITEM));
     }
 
@@ -268,8 +268,8 @@ public class TextAdventureTests {
         Inventory inventory = new Inventory();
         Item testItem = new Item(Const.TEST_ITEM, Const.TEST_ITEM_DESCRIPTION);
         inventory.addItem(testItem);
-        use.add_item_use_location(testRoom, testItem);
-        use.item_add_exit(testItem, thirdRoom);
+        testItem.addUseLocation(testRoom);
+        testItem.addExitAfterUse(thirdRoom);
         assertEquals(false, testRoom.hasExit(thirdRoom.getName()));
         use.get_response(testRoom, inventory, Const.TEST_ITEM);
         assertEquals(true, testRoom.hasExit(thirdRoom.getName()));
@@ -298,5 +298,11 @@ public class TextAdventureTests {
         talk.getResponse(testPerson, Const.DIALOG_OPTION);
         assertEquals("1. " + Const.DIALOG_OPTION + "\n"
                 + "2. " + Const.HIDDEN_DIALOG + "\n", testPerson.getDialogChoices());
+    }
+
+    @Test
+    public void YouCanCreateAGameWithPeopleItemsHiddenDialogFromATextFile() {
+        Game myGame = new Game();
+        assertEquals(true, myGame.load(Const.TEST_FILE_WITH_ITEMS_AND_HIDDEN_DIALOG));
     }
 }

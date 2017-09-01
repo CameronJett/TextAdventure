@@ -28,6 +28,8 @@ final class Const {
     static final String TEST_FILE_NAME = "src\\test game.txt";
     static final String TEST_FILE_WITH_ROOMS_NAME = "src\\test game with rooms.txt";
     static final String TEST_FILE_WITH_PEOPLE_NAME = "src\\test game with people.txt";
+    static final String TEST_FILE_WITH_ITEMS_AND_HIDDEN_DIALOG
+            = "C:\\Users\\CAMWRONGER\\Desktop\\Projects\\Java\\TextAdventure\\src\\test game with people items and hidden dialog.txt";
 
     //commands
     static final String MOVE = "move";

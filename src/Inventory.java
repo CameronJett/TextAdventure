@@ -7,6 +7,7 @@ public class Inventory {
     public Inventory() {
         allItems = new ArrayList<>();
     }
+
     public void addItem(Item item) {
         allItems.add(item);
     }
@@ -39,5 +40,14 @@ public class Inventory {
         if (itemToRemove != null) {
             allItems.remove(itemToRemove);
         }
+    }
+
+    public Item getItem(String itemName) {
+        for (Item item : allItems) {
+            if (item.getName().equals(itemName)) {
+                return item;
+            }
+        }
+        return null;
     }
 }

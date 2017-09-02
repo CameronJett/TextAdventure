@@ -50,7 +50,7 @@ public class CharacterDialog {
         int j = 1;
         for (String key : dialog.keySet()) {
             if (i == j) {
-                return dialog.get(key);
+                return getDialog(key);
             }
             j++;
         }
@@ -72,7 +72,7 @@ public class CharacterDialog {
 
     public String getItemDialog(String item) {
         for (String key : itemDialog.keySet()) {
-            if (key.equals(item)) {
+            if (key.equalsIgnoreCase(item)) {
                 return itemDialog.get(key);
             }
         }

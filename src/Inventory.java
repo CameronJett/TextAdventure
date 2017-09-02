@@ -14,7 +14,7 @@ public class Inventory {
 
     public boolean hasItem(String itemName) {
         for (Item item : allItems) {
-            if (item.getName().toLowerCase().equals(itemName)) {
+            if (item.getName().equalsIgnoreCase(itemName)) {
                 return true;
             }
         }
@@ -32,7 +32,7 @@ public class Inventory {
     public void removeItem(String itemName) {
         Item itemToRemove = null;
         for (Item item : allItems) {
-            if (item.getName().toLowerCase().equals(itemName)) {
+            if (item.getName().equalsIgnoreCase(itemName)) {
                 itemToRemove = item;
             }
         }
@@ -44,7 +44,7 @@ public class Inventory {
 
     public Item getItem(String itemName) {
         for (Item item : allItems) {
-            if (item.getName().toLowerCase().equals(itemName)) {
+            if (item.getName().equalsIgnoreCase(itemName)) {
                 return item;
             }
         }

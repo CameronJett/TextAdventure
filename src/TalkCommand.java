@@ -3,7 +3,8 @@ public class TalkCommand {
 
     public String getResponse(Room room, String option) {
         if (room.hasPerson()) {
-            if (room.getPerson().getName().toLowerCase().equals(option) || option.equals(Const.TALK)) {
+            if (room.getPerson().getName().toLowerCase().equalsIgnoreCase(option)
+                    || option.equalsIgnoreCase(Const.TALK)) {
                 //return dialog choices
                 return room.getPerson().getDialogChoices();
             } else if (room.getPerson().hasDialog(option)) {

@@ -17,7 +17,7 @@ public class Room extends Interactable{
 
     public boolean hasExit(String option) {
         for (Room room : exits) {
-            if (room.getName().toLowerCase().equals(option)) {
+            if (room.getName().equalsIgnoreCase(option)) {
                 return true;
             }
         }
@@ -27,7 +27,7 @@ public class Room extends Interactable{
     public Room getExit(String option) {
         Room exit = this;
         for (Room room : exits) {
-            if (room.getName().toLowerCase().equals(option)) {
+            if (room.getName().equalsIgnoreCase(option)) {
                 exit = room;
             }
         }

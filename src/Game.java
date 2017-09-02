@@ -31,12 +31,12 @@ public class Game {
 
         parser = new TextParser();
         help = new HelpCommand();
-        look = new LookCommand();
+        look = new LookCommand(inventory);
         move = new MoveCommand();
         show = new ShowCommand();
         take = new TakeCommand(inventory);
         talk = new TalkCommand();
-        use = new UseCommand();
+        use = new UseCommand(inventory);
 
         parser = new TextParser();
         String[] commands = {"help", "look", "move", "show", "take", "talk", "use", "quit", "inventory"};
@@ -56,8 +56,10 @@ public class Game {
         Scanner reader = new Scanner(System.in);
         print("Hello and welcome.");
 
+        //TODO: fix how to chose numbers in parser
         parser.addObject("1");
         parser.addObject("2");
+        parser.addObject("3");
 
         boolean quit = false;
         while (!quit) {
@@ -83,7 +85,7 @@ public class Game {
                     print(talk.getResponse(currentRoom, parser.getObject()));
                     break;
                 case "use":
-                    print(use.getResponse(currentRoom, inventory, parser.getObject()));
+                    print(use.getResponse(currentRoom, parser.getObject()));
                     break;
                 case "inventory":
                     print(inventory.getItemList());

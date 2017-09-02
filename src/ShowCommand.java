@@ -31,7 +31,7 @@ public class ShowCommand {
 
         for (Map<Item, Person> keys: itemAddDialog.keySet()) {
             for (Item it: keys.keySet()) {
-                if (it.getName().equals(item)) {
+                if (it.getName().equalsIgnoreCase(item)) {
                     showKey.put(it, keys.get(it));
                 }
             }

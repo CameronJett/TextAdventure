@@ -47,11 +47,11 @@ public class Interactable extends GameEntity{
     }
 
     public boolean hasItem(String itemName) {
-        return item.getName().toLowerCase().equals(itemName);
+        return item.getName().equalsIgnoreCase(itemName);
     }
 
     public Item takeItem(String itemName) {
-        if (item.getName().toLowerCase().equals(itemName)) {
+        if (item.getName().equalsIgnoreCase(itemName)) {
             Item tempItem = item;
             item = null;
             return tempItem;

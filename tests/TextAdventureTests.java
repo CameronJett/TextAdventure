@@ -11,7 +11,8 @@ public class TextAdventureTests {
     private Room currentRoom = testRoom;
     private Room secondRoom = new Room(Const.SECOND_ROOM, Const.SECOND_DESCRIPTION);
     private Room thirdRoom = new Room(Const.THIRD_ROOM, Const.THIRD_DESCRIPTION);
-    private LookCommand look = new LookCommand();
+    private Inventory inventory = new Inventory();
+    private LookCommand look = new LookCommand(inventory);
     private MoveCommand move = new MoveCommand();
     private TextParser parser = new TextParser();
 
@@ -236,44 +237,44 @@ public class TextAdventureTests {
 
     @Test
     public void WhenAnItemIsUsedItIsTakenOutOfYourInventory() {
-        UseCommand use = new UseCommand();
-        Inventory inventory = new Inventory();
+        inventory = new Inventory();
+        UseCommand use = new UseCommand(inventory);
         Item testItem = new Item(Const.TEST_ITEM, Const.TEST_ITEM_DESCRIPTION);
         inventory.addItem(testItem);
         testItem.addUseLocation(testRoom);
-        use.getResponse(testRoom, inventory, Const.TEST_ITEM);
+        use.getResponse(testRoom, Const.TEST_ITEM);
         assertEquals(false, inventory.hasItem(Const.TEST_ITEM));
     }
 
     @Test
     public void WhenAnItemIsUsedInTheWrongRoomItTellsYouNothingHappened() {
-        UseCommand use = new UseCommand();
-        Inventory inventory = new Inventory();
+        inventory = new Inventory();
+        UseCommand use = new UseCommand(inventory);
         Item testItem = new Item(Const.TEST_ITEM, Const.TEST_ITEM_DESCRIPTION);
         inventory.addItem(testItem);
-        assertEquals(Const.CANT_USE_THERE, use.getResponse(testRoom, inventory, Const.TEST_ITEM));
+        assertEquals(Const.CANT_USE_THERE, use.getResponse(testRoom, Const.TEST_ITEM));
     }
 
     @Test
     public void WhenAnItemIsUsedInTheCorrectPlaceItTellsYouItWasUsed() {
-        UseCommand use = new UseCommand();
-        Inventory inventory = new Inventory();
+        inventory = new Inventory();
+        UseCommand use = new UseCommand(inventory);
         Item testItem = new Item(Const.TEST_ITEM, Const.TEST_ITEM_DESCRIPTION);
         inventory.addItem(testItem);
         testItem.addUseLocation(testRoom);
-        assertEquals(Const.YOU_USED_THE_ITEM + testItem.getName(), use.getResponse(testRoom, inventory, Const.TEST_ITEM));
+        assertEquals(Const.YOU_USED_THE_ITEM + testItem.getName(), use.getResponse(testRoom, Const.TEST_ITEM));
     }
 
     @Test
     public void WhenAnItemIsUsedItCanAddANewExit() {
-        UseCommand use = new UseCommand();
-        Inventory inventory = new Inventory();
+        inventory = new Inventory();
+        UseCommand use = new UseCommand(inventory);
         Item testItem = new Item(Const.TEST_ITEM, Const.TEST_ITEM_DESCRIPTION);
         inventory.addItem(testItem);
         testItem.addUseLocation(testRoom);
         testItem.addExitAfterUse(thirdRoom);
         assertEquals(false, testRoom.hasExit(thirdRoom.getName()));
-        use.getResponse(testRoom, inventory, Const.TEST_ITEM);
+        use.getResponse(testRoom, Const.TEST_ITEM);
         assertEquals(true, testRoom.hasExit(thirdRoom.getName()));
     }
 

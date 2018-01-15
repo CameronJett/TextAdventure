@@ -1,4 +1,4 @@
-public class MoveCommand {
+public class MoveCommand implements Command {
 
     public String getResponse(Room room, String option) {
         if (option.equalsIgnoreCase(Const.MOVE)) {

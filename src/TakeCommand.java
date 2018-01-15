@@ -1,4 +1,4 @@
-public class TakeCommand {
+public class TakeCommand implements Command {
     private Inventory inventory;
 
     public TakeCommand(Inventory inv) {

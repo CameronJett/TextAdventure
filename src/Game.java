@@ -66,7 +66,7 @@ public class Game {
             parser.parse(reader.nextLine());
             switch (parser.getCommand()) {
                 case "help":
-                    print(help.getResponse());
+                    print(help.getResponse(currentRoom, parser.getObject()));
                     break;
                 case "look":
                     print(look.getResponse(currentRoom, parser.getObject()));

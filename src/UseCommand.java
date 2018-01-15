@@ -1,4 +1,4 @@
-public class UseCommand {
+public class UseCommand implements Command {
     Inventory inventory;
 
     public UseCommand(Inventory inv) { inventory = inv; }

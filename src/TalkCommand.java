@@ -1,5 +1,4 @@
-
-public class TalkCommand {
+public class TalkCommand implements Command {
 
     public String getResponse(Room room, String option) {
         if (room.hasPerson()) {

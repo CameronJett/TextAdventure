@@ -1,4 +1,4 @@
-public class LookCommand {
+public class LookCommand implements Command {
     Inventory inventory;
 
     public LookCommand(Inventory inv) { inventory = inv; }

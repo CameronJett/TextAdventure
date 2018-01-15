@@ -1,7 +1,7 @@
 import java.util.HashMap;
 import java.util.Map;
 
-public class ShowCommand {
+public class ShowCommand implements Command {
     private Map<Map<Item, Person>, Map<String, String>> itemAddDialog;
 
     public ShowCommand() {

@@ -130,7 +130,7 @@ public class TextAdventureTests {
     @Test
     public void WhenYouTypeHelpYouGetHelpInformation() {
         HelpCommand help = new HelpCommand();
-        assertEquals(Const.HELP_RESPONSE, help.getResponse());
+        assertEquals(Const.HELP_RESPONSE, help.getResponse(currentRoom, ""));
     }
 
     @Test

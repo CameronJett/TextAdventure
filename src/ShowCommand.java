@@ -4,10 +4,11 @@ import java.util.Map;
 public class ShowCommand implements Command {
     private Map<Map<Item, Person>, Map<String, String>> itemAddDialog;
 
-    public ShowCommand() {
+    ShowCommand() {
         itemAddDialog = new HashMap<>();
     }
 
+    @Override
     public String getResponse(Room room, String item) {
         if (room.hasPerson()) {
             show_item(item, room.getPerson());
@@ -16,7 +17,7 @@ public class ShowCommand implements Command {
         return Const.NO_ONE_TO_SHOW;
     }
 
-    public void item_add_dialog(Item item, Person person, String dialogOption, String dialogText) {
+    void item_add_dialog(Item item, Person person, String dialogOption, String dialogText) {
         Map<Item, Person> key = new HashMap<>();
         Map<String, String> value = new HashMap<>();
 

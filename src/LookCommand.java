@@ -1,8 +1,9 @@
 public class LookCommand implements Command {
-    Inventory inventory;
+    private Inventory inventory;
 
-    public LookCommand(Inventory inv) { inventory = inv; }
+    LookCommand(Inventory inv) { inventory = inv; }
 
+    @Override
     public String getResponse(Room room, String name) {
         if (room.getName().equalsIgnoreCase(name) || name.equalsIgnoreCase(Const.LOOK)) {
             return room.getDescription();

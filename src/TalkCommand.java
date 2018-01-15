@@ -1,5 +1,6 @@
 public class TalkCommand implements Command {
 
+    @Override
     public String getResponse(Room room, String option) {
         if (room.hasPerson()) {
             if (room.getPerson().getName().toLowerCase().equalsIgnoreCase(option)

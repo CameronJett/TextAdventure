@@ -1,10 +1,11 @@
 public class TakeCommand implements Command {
     private Inventory inventory;
 
-    public TakeCommand(Inventory inv) {
+    TakeCommand(Inventory inv) {
         inventory = inv;
     }
 
+    @Override
     public String getResponse(Room room, String itemName) {
         if (room.hasItem(itemName)) {
             inventory.addItem(room.takeItem(itemName));

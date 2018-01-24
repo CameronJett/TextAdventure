@@ -5,10 +5,14 @@ public class Room extends Interactable{
     private List<Room> exits;
     private Person person;
 
-    public Room(String name, String description) {
+    public Room(String name, Dialog description) {
         super(name, description);
         exits = new ArrayList<>();
         person = null;
+    }
+
+    public Room(String name, String description) {
+        this(name, new Dialog(description));
     }
 
     public void addExit(Room room) {
@@ -24,12 +28,25 @@ public class Room extends Interactable{
         return false;
     }
 
+    public boolean hasExit(int option) {
+        return exits.size() >= option;
+    }
+
     public Room getExit(String option) {
         Room exit = this;
         for (Room room : exits) {
             if (room.getName().equalsIgnoreCase(option)) {
                 exit = room;
             }
+        }
+        return exit;
+    }
+
+    public Room getExit(int option) {
+        Room exit = this;
+
+        if (exits.size() >= option) {
+            return exits.get(option-1);
         }
         return exit;
     }
@@ -44,13 +61,16 @@ public class Room extends Interactable{
         }
     }
 
-    public String getExitChoices() {
+    public Dialog getExitChoices() {
         StringBuilder dialogChoices = new StringBuilder();
+        Dialog returnDialog = new Dialog();
 
         for (int i=1; i <= exits.size(); i++) {
-            dialogChoices.append(i).append(". ").append(exits.get(i - 1).getName()).append("\n");
+            dialogChoices.append(i).append(". ").append(exits.get(i - 1).getName());
+            returnDialog.addLineOfDialog(dialogChoices.toString());
+            dialogChoices.setLength(0);
         }
-        return dialogChoices.toString();
+        return returnDialog;
     }
 
     public void addPerson(Person p) {

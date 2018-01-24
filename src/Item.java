@@ -3,10 +3,14 @@ public class Item extends GameEntity{
     private Room useExit;
     private boolean addsExit;
 
-    public Item(String item_name, String item_description) {
+    public Item(String item_name, Dialog item_description) {
         super(item_name, item_description);
-        useLocation = new Room("", "");
+        useLocation = new Room("", new Dialog());
         addsExit = false;
+    }
+
+    public Item(String item_name, String item_description) {
+        this(item_name, new Dialog(item_description));
     }
 
     public void addUseLocation(Room room) {

@@ -1,3 +1,3 @@
 public interface Command {
-    String getResponse(Room room, String name);
+    Dialog getResponse(Room room, String name);
 }

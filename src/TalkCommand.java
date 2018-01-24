@@ -1,7 +1,7 @@
 public class TalkCommand implements Command {
 
     @Override
-    public String getResponse(Room room, String option) {
+    public Dialog getResponse(Room room, String option) {
         if (room.hasPerson()) {
             if (room.getPerson().getName().toLowerCase().equalsIgnoreCase(option)
                     || option.equalsIgnoreCase(Const.TALK)) {
@@ -15,6 +15,6 @@ public class TalkCommand implements Command {
             }
         }
 
-        return Const.NO_ONE_TO_TALK_TO;
+        return new Dialog(Const.NO_ONE_TO_TALK_TO);
     }
 }

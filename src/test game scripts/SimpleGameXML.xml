@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+<game>
+    <entity>
+        <type>room</type>
+        <name>Bedroom</name>
+        <description>
+            <text>This is a simple bedroom. The sheets are dirty.</text>
+        </description>
+        <exit>Bathroom</exit>
+        <!--<exit>Store</exit>-->
+        <entrance>
+            <text>This text is what you see the first time you enter the bedroom.</text>
+            <text>It can have pauses.</text>
+        </entrance>
+        <interest>
+            <name>Sheets</name>
+            <dialog>
+                <text>The sheets are dirty.</text>
+            </dialog>
+        </interest>
+        <interest>
+            <name>Clock</name>
+            <dialog>
+                <text>It's getting late.</text>
+            </dialog>
+        </interest>
+    </entity>
+
+    <entity>
+        <type>room</type>
+        <name>Bathroom</name>
+        <description>
+            <text>This is a simple bathroom. There is a key on the sink.</text>
+        </description>
+        <exit>Bedroom</exit>
+        <entrance>
+            <text>This is the bathroom, there is a key on the sink.</text>
+        </entrance>
+        <hold_item>Key</hold_item>
+    </entity>
+
+    <entity>
+        <type>room</type>
+        <name>Store</name>
+        <description>
+            <text>This is a great store. The worker is behind the counter.</text>
+        </description>
+        <person>Worker</person>
+    </entity>
+
+    <entity>
+        <type>person</type>
+        <name>Worker</name>
+        <description>
+            <text>This is the store worker, he's wearing a nice tie.</text>
+        </description>
+        <interest>
+            <name>Tie</name>
+            <dialog>
+                <text>That is a nice blue tie.</text>
+            </dialog>
+        </interest>
+        <dialog>
+            <option>This is a dialog option.</option>
+            <text>This is one line of text.</text>
+            <text>And this is another one.</text>
+            <text>This is a third line.</text>
+            <dialog>
+                <option>This dialog option replaces the last one.</option>
+                <text>And this is the new text for that option.</text>
+            </dialog>
+        </dialog>
+        <dialog>
+            <option>This is a second dialog option.</option>
+            <text>Second dialog option text.</text>
+            <hidden>
+                <option>This adds a third dialog option</option>
+                <text>And this is the third dialog options text</text>
+            </hidden>
+        </dialog>
+        <item_no_text>
+            <text>I don't know what that is, sir.</text>
+        </item_no_text>
+        <item_text>
+            <name>Key</name>
+            <dialog>
+                <text>I don't know anything about that key.</text>
+            </dialog>
+        </item_text>
+    </entity>
+
+    <entity>
+        <type>item</type>
+        <name>Key</name>
+        <description>
+            <text>Key to my bedroom door.</text>
+        </description>
+        <use>Bedroom</use>
+        <exit>Store</exit>
+    </entity>
+</game>

@@ -25,10 +25,8 @@ final class Const {
 
     static final String TEST_ENTRANCE_DIALOG = "test entrance";
 
-    static final String TEST_FILE_NAME = "src\\test game scripts\\test game.txt";
-    static final String TEST_FILE_WITH_ROOMS_NAME = "src\\test game scripts\\test game with rooms.txt";
-    static final String TEST_FILE_WITH_PEOPLE_NAME = "src\\test game scripts\\test game with people.txt";
-    static final String TEST_FILE_WITH_ITEMS_AND_HIDDEN_DIALOG = "src\\test game scripts\\test game with people items and hidden dialog.txt";
+    static final String DIALOG_FIRST_HALF = "hello";
+    static final String DIALOG_SECOND_HALF = "world";
 
     //commands
     static final String MOVE = "move";
@@ -56,9 +54,8 @@ final class Const {
 
     //dialog
     static final String DEFAULT_NO_ITEM_DIALOG = "I don't have anything to say about that.";
-    static final Character NULL_CHAR = '\u0000';
 
     //------------------ Simple Game ------------------//
-    static final String SIMPLE_GAME_LOAD_FILE = "src\\test game scripts\\SimpleGame.txt";
+    static final String SIMPLE_GAME_LOAD_FILE_XML = "src\\test game scripts\\SimpleGameXML.xml";
 
 }

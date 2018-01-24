@@ -1,7 +1,7 @@
 public class HelpCommand implements Command {
 
     @Override
-    public String getResponse(Room room, String name) {
-        return Const.HELP_RESPONSE;
+    public Dialog getResponse(Room room, String name) {
+        return new Dialog(Const.HELP_RESPONSE);
     }
 }

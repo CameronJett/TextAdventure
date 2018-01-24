@@ -54,7 +54,7 @@ class Game {
 
     void run() {
         Scanner reader = new Scanner(System.in);
-        print("Hello and welcome.");
+        print(currentRoom.getIntroductionDialog());
 
         //TODO: fix how to chose numbers in parser
         parser.addObject("1");
@@ -99,17 +99,31 @@ class Game {
     }
 
     boolean load(String fileName) {
-        Load loader = new SimpleLoader();
-        return loader.load(this, parser, fileName);
+        Load loader = new XMLLoader(parser);
+        return loader.load(this, fileName);
     }
 
-    private  void print(String text) {
+    //putting this here to test different loaders
+    boolean load(String fileName, Load loader) {
+        return loader.load(this, fileName);
+    }
+
+    private void print(String text) {
         //TODO: make it so there is pause in text you have to react to
         System.out.println(text);
     }
 
+    private void print(Dialog dialog) {
+        //TODO: print dialog with pauses
+        List<String> text = dialog.readDialog();
+        for (String aText : text) {
+            System.out.println(aText);
+        }
+    }
+
     void addItem(Item item) {
         allItems.add(item);
+        parser.addObject(item.getName());
     }
 
     Item getItem(String itemName) {
@@ -124,6 +138,7 @@ class Game {
 
     void addPerson(Person person) {
         allPeople.add(person);
+        parser.addObject(person.getName());
     }
 
     Person getPerson(String personName) {
@@ -138,6 +153,7 @@ class Game {
 
     void addRoom(Room room) {
         allRooms.add(room);
+        parser.addObject(room.getName());
     }
 
     Room getRoom(String roomName) {

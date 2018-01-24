@@ -1,13 +1,13 @@
 public class GameEntity {
     private String name;
-    private String description;
+    private Dialog description;
 
-    public GameEntity(String tempName, String tempDescription) {
+    public GameEntity(String tempName, Dialog tempDescription) {
         name = tempName;
         description = tempDescription;
     }
 
-    public String getDescription() {
+    public Dialog getDescription() {
         return description;
     }
 

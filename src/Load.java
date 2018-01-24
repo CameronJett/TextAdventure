@@ -1,3 +1,3 @@
 public interface Load {
-    boolean load(Game game, TextParser parser, String filename);
+    boolean load(Game game, String filename);
 }

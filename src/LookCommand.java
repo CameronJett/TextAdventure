@@ -4,7 +4,7 @@ public class LookCommand implements Command {
     LookCommand(Inventory inv) { inventory = inv; }
 
     @Override
-    public String getResponse(Room room, String name) {
+    public Dialog getResponse(Room room, String name) {
         if (room.getName().equalsIgnoreCase(name) || name.equalsIgnoreCase(Const.LOOK)) {
             return room.getDescription();
         } else if (room.contains(name)) {
@@ -18,6 +18,6 @@ public class LookCommand implements Command {
         } else if (inventory.hasItem(name)) {
             return inventory.getItem(name).getDescription();
         }
-        return Const.LOOK_NOT_INTERESTING;
+        return new Dialog(Const.LOOK_NOT_INTERESTING);
     }
 }

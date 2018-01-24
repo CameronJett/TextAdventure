@@ -1,21 +1,21 @@
 public class UseCommand implements Command {
-    Inventory inventory;
+    private Inventory inventory;
 
     public UseCommand(Inventory inv) { inventory = inv; }
 
-    public String getResponse(Room room, String item) {
+    public Dialog getResponse(Room room, String item) {
         if (!inventory.hasItem(item)) {
-            return Const.DONT_HAVE_THAT_ITEM;
+            return new Dialog(Const.DONT_HAVE_THAT_ITEM);
         } else {
             Item useItem = inventory.getItem(item);
             if (useItem.getUseLocation().equals(room)) {
                 String additionalDialog = use_item(useItem, room);
                 inventory.removeItem(item);
-                return Const.YOU_USED_THE_ITEM + item + additionalDialog;
+                return new Dialog(Const.YOU_USED_THE_ITEM + item + additionalDialog);
             }
         }
 
-        return Const.CANT_USE_THERE;
+        return new Dialog(Const.CANT_USE_THERE);
     }
 
     private String use_item(Item item, Room room) {

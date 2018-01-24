@@ -1,76 +1,79 @@
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.*;
 
 public class CharacterDialog {
-    private Map<String, String> dialog;
-    private Map<String, Character> linkHiddenDialog;
-    private Map<Character, Map<String, String>> hiddenDialog;
+    private List<DialogWithChoices> dialog;
 
-    private Map<String, String> itemDialog;
-    private String noItemDialog;
+    private Map<String, Dialog> itemDialog;
+    private Dialog noItemDialog;
 
     public CharacterDialog() {
-        dialog = new LinkedHashMap<>();
-        linkHiddenDialog = new HashMap<>();
-        hiddenDialog = new HashMap<>();
+        dialog = new ArrayList<>();
 
         itemDialog = new HashMap<>();
-        noItemDialog = Const.DEFAULT_NO_ITEM_DIALOG;
+        noItemDialog = new Dialog(Const.DEFAULT_NO_ITEM_DIALOG);
     }
 
-    public void add(String option, String response, Character dialogLink) {
-        dialog.put(option, response);
-        if (!dialogLink.equals(Const.NULL_CHAR)) {
-            linkHiddenDialog.put(option, dialogLink);
-        }
+    public void add(String option, String response) {
+        this.add(option, new Dialog(response));
     }
 
-    public void addAll(Map<String, String> dialogToAdd) { dialog.putAll(dialogToAdd); }
-
-    public void addHidden(Character hiddenLink, String option, String response) {
-        Map<String, String> tempDialog = new HashMap<>();
-        tempDialog.put(option, response);
-        hiddenDialog.put(hiddenLink, tempDialog);
+    public void add(String option, Dialog response) {
+        this.add(new DialogWithChoices(option, response));
     }
 
-    public boolean hasDialog(String option) { return dialog.containsKey(option); }
+    public void add(DialogWithChoices dialogContainer) {
+        dialog.add(dialogContainer);
+    }
 
-    public String getDialog(String option) {
-        if (linkHiddenDialog.containsKey(option)) {
-            Character link = linkHiddenDialog.get(option);
-            if (hiddenDialog.containsKey(link)) {
-                dialog.putAll(hiddenDialog.get(link));
+    public void addAll(List<DialogWithChoices> dialogList) {
+        dialog.addAll(dialogList);
+    }
+
+    public boolean hasDialog(String option) {
+        for (DialogWithChoices aDialog : dialog) {
+            if (aDialog.getDialogOption().equals(option)) {
+                return true;
             }
         }
-        return dialog.get(option);
+        return false;
     }
 
-    public String getDialog(int i) {
-        int j = 1;
-        for (String key : dialog.keySet()) {
-            if (i == j) {
-                return getDialog(key);
+    public boolean hasDialog(int i) {
+        return dialog.size() >= i - 1 && i > 0;
+    }
+
+    public Dialog getDialog(String option) {
+        for (DialogWithChoices aDialog : dialog) {
+            if (aDialog.getDialogOption().equals(option)) {
+                return aDialog.readDialog(this);
             }
-            j++;
         }
-        return "";
+        return new Dialog();
     }
 
-    public String getDialogChoices() {
-        StringBuilder dialogChoices = new StringBuilder();
-
-        int i = 1;
-        for (String key : dialog.keySet()) {
-            dialogChoices.append(i).append(". ").append(key).append("\n");
-            i++;
+    public Dialog getDialog(int option) {
+        if (dialog.size() >= option) {
+            return dialog.get(option-1).readDialog(this);
         }
-        return dialogChoices.toString();
+        return new Dialog();  //TODO: return meaningful response?
     }
 
-    public void addItemDialog(String item, String response) { itemDialog.put(item, response); }
+    public Dialog getDialogChoices() {
+        StringBuilder dialogLine = new StringBuilder();
+        Dialog returnDialog = new Dialog();
 
-    public String getItemDialog(String item) {
+        for (int i=0; i < dialog.size(); i++) {
+            dialogLine.append(i+1).append(". ").append(dialog.get(i).getDialogOption());
+            returnDialog.addLineOfDialog(dialogLine.toString());
+            dialogLine.setLength(0);
+        }
+
+        return returnDialog;
+    }
+
+    public void addItemDialog(String item, Dialog response) { itemDialog.put(item, response); }
+
+    public Dialog getItemDialog(String item) {
         for (String key : itemDialog.keySet()) {
             if (key.equalsIgnoreCase(item)) {
                 return itemDialog.get(key);
@@ -79,5 +82,5 @@ public class CharacterDialog {
         return noItemDialog;
     }
 
-    public void changeNoItemDialog(String tempDialog) { noItemDialog = tempDialog; }
+    public void changeNoItemDialog(Dialog tempDialog) { noItemDialog = tempDialog; }
 }
